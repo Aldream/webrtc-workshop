@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<title>Hair Check</title>
+
+<style type="text/css">
+    video { width: 320px; height: 240px; }
+</style>
+
+<script>
+
+var selfView;
+var startButton;
+
+window.onload = function () {
+    selfView = document.getElementById("self_view");
+    startButton = document.getElementById("start_but");
+
+    startButton.onclick = function (evt) {
+        startButton.disabled = true;
+
+		navigator.webkitGetUserMedia({ "video": true }, function (stream) {
+			selfView.src = URL.createObjectURL(stream);
+		});
+    };
+}
+</script>
+
+</head>
+<body>
+<h2>Hair Check (Template)</h2>
+
+<input type="button" id="start_but" value="Start">
+<br>
+
+<video id="self_view" autoplay></video>
+
+</body>
+</html>
